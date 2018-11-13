@@ -35,7 +35,7 @@ public class TileFactory {
                 tile.isSolid = true;
                 break;
             case 5:
-                tile = new Tile("bridgeItem.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
+                tile = new Tile("boxItem.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
                 tile.getImage().mirrorVertically();
                 tile.isSolid = true;
                 break;
@@ -60,10 +60,10 @@ public class TileFactory {
                 tile.isSolid = true;
                 break;
             case 11:
-                tile = new Tile("liquidWater.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
+                tile = new Tile("liquidWater.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, "water");
                 break;
             case 12:
-                tile = new Tile("liquidWaterTop_mid.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
+                tile = new Tile("liquidWaterTop_mid.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, "water");
                 break;
             case 13:
                 tile = new Tile("p1.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);

@@ -33,7 +33,17 @@ public class Hero extends Mover {
         for (Actor enemy : getIntersectingObjects(Enemy.class)) {
             if (enemy != null) {
                 getWorld().removeObject(this);
-                break;
+                return;
+            }
+        }
+        
+        for (Actor actor : getIntersectingObjects(Tile.class))
+        {
+            Tile tile = (Tile) actor;
+            if (tile != null && tile.type.equals("water"))
+            {     
+                getWorld().removeObject(this);
+                return;
             }
         }
     }
