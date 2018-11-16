@@ -148,6 +148,8 @@ public class Hero extends Mover {
         else if(Greenfoot.isKeyDown("w")) {
             velocityY = -15;
             setImage("p1_jump.png");
+           Greenfoot.playSound("Jump.mp3");
+           
         }
         else if(Greenfoot.isKeyDown("s")){
             setImage("p1_duck.png");
@@ -172,8 +174,6 @@ public class Hero extends Mover {
     public int getHeight() {
         return getImage().getHeight();
     }
-    
-    
     
     public void animateRight(){
         if(frame == 1)
