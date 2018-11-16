@@ -30,6 +30,16 @@ public class Tile extends Actor {
         id++;
     }
     
+    public Tile(String image) {
+        super();
+        setImage(image);
+        if (CollisionEngine.DEBUG) {
+            getImage().drawString("ÏD: " + id, 10, 10);
+        }
+        _id = id;
+        id++;
+    }
+    
     public Tile(String image, int width, int heigth, String type) {
         this(image, width, heigth);
         this.type = type;

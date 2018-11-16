@@ -1,4 +1,3 @@
-
 import greenfoot.*;
 
 /**
@@ -33,7 +32,12 @@ public class Hero extends Mover {
     private GreenfootImage run21 = new GreenfootImage("p1_walk10.png");
     private GreenfootImage run22 = new GreenfootImage("p1_walk11.png");
     private int frame = 1;
-
+    private int goldCoins = 0;
+    private int silverCoins = 0;
+    private int bronzeCoins = 0;
+    private int gems = 0;
+    private int blueKey = 0;
+    
     public Hero() {
         super();
         gravity = 9.8;
@@ -70,6 +74,61 @@ public class Hero extends Mover {
             if (tile != null && tile.type.equals("water"))
             {     
                 getWorld().removeObject(this);
+                return;
+            }
+        }
+        
+        for (Actor actor : getIntersectingObjects(Tile.class))
+        {
+            Tile tile = (Tile) actor;
+            if (tile != null && tile.type.equals("blueGem"))
+            {     
+                getWorld().removeObject(tile);
+                gems ++;
+                return;
+            }
+        }
+        
+        for (Actor actor : getIntersectingObjects(Tile.class))
+        {
+            Tile tile = (Tile) actor;
+            if (tile != null && tile.type.equals("blueKey"))
+            {     
+                getWorld().removeObject(tile);
+                blueKey ++;
+                return;
+            }
+        }
+        
+        for (Actor actor : getIntersectingObjects(Tile.class))
+        {
+            Tile tile = (Tile) actor;
+            if (tile != null && tile.type.equals("goldCoin"))
+            {     
+                getWorld().removeObject(tile);
+                goldCoins ++;
+                return;
+            }
+        }
+        
+        for (Actor actor : getIntersectingObjects(Tile.class))
+        {
+            Tile tile = (Tile) actor;
+            if (tile != null && tile.type.equals("silverCoin"))
+            {     
+                getWorld().removeObject(tile);
+                silverCoins ++;
+                return;
+            }
+        }
+        
+        for (Actor actor : getIntersectingObjects(Tile.class))
+        {
+            Tile tile = (Tile) actor;
+            if (tile != null && tile.type.equals("blueKey"))
+            {     
+                getWorld().removeObject(tile);
+                blueKey ++;
                 return;
             }
         }
@@ -123,43 +182,43 @@ public class Hero extends Mover {
         }
         else if(frame == 2)
         {
-            setImage(run12);
+            setImage(run13);
         }
         else if(frame == 3)
         {
-            setImage(run13);
+            setImage(run14);
         }
         else if(frame == 4)
         {
-            setImage(run14);
+            setImage(run15);
         }
         else if(frame == 5)
         {
-            setImage(run15);
+            setImage(run16);
         }
         else if(frame == 6)
         {
-            setImage(run16);
+            setImage(run17);
         }
         else if(frame == 7)
         {
-            setImage(run17);
+            setImage(run18);
         }
         else if(frame == 8)
         {
-            setImage(run18);
+            setImage(run19);
         }
         else if(frame == 9)
         {
-            setImage(run19);
+            setImage(run20);
         }
         else if(frame == 10)
         {
-            setImage(run20);
+            setImage(run21);
         }
         else if(frame == 11)
         {
-            setImage(run21);
+            setImage(run22);
             return;
         }
 
@@ -176,43 +235,43 @@ public class Hero extends Mover {
         }
         else if(frame == 2)
         {
-            setImage(run1);
+            setImage(run2);
         }
         else if(frame == 3)
         {
-        setImage(run2);
+            setImage(run3);
         }
         else if(frame == 4)
         {
-            setImage(run2);
+            setImage(run4);
         }
         else if(frame == 5)
         {
-            setImage(run3);
+            setImage(run5);
         }
         else if(frame == 6)
         {
-            setImage(run3);
+            setImage(run6);
         }
         else if(frame == 7)
         {
-            setImage(run4);
+            setImage(run7);
         }
         else if(frame == 8)
         {
-            setImage(run4);
+            setImage(run8);
         }
         else if(frame == 9)
         {
-            setImage(run5);
+            setImage(run9);
         }
         else if(frame == 10)
         {
-            setImage(run5);
+            setImage(run10);
         }
         else if(frame == 11)
         {
-            setImage(run6);
+            setImage(run11);
             return;
         }
 
