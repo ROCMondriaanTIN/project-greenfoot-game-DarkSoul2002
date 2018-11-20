@@ -11,7 +11,7 @@ public class TileFactory {
      * @param mapIcon number
      * @return Tile tile object
      */
-    public static Tile createTile(int mapIcon) {
+    public Tile createTile(int mapIcon) {
         Tile tile;
         switch (mapIcon) {
             case 0:
@@ -60,10 +60,10 @@ public class TileFactory {
                 tile.isSolid = true;
                 break;
             case 11:
-                tile = new Tile("liquidWater.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, "water");
+                tile = new Tile("liquidWater.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
                 break;
             case 12:
-                tile = new Tile("liquidWaterTop_mid.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, "water");
+                tile = new Tile("liquidWaterTop_mid.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
                 break;
             case 13:
                 tile = new Tile("p1.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
@@ -136,16 +136,16 @@ public class TileFactory {
                 tile = new Tile("bush.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
                 break;            
             case 36:
-                tile = new Tile("coinGold.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, "goldCoin");
+                tile = new Tile("coinGold.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, TileType.GOLD_COIN);
                 break;
             case 37:
-                tile = new Tile("coinSilver.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, "silverCoin");
+                tile = new Tile("coinSilver.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, TileType.SILVER_COIN);
                 break;
             case 38:
-                tile = new Tile("keyBlue.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, "blueKey");
+                tile = new Tile("keyBlue.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, TileType.BLUE_KEY);
                 break;
             case 39:
-                tile = new Tile("gemBlue.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, "blueGem");
+                tile = new Tile("gemBlue.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, TileType.BLUE_GEM);
                 break;    
             default:
                 tile = new Tile("grassMid.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);

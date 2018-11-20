@@ -1,7 +1,6 @@
 import greenfoot.*;
 
 /**
- *
  * @author R. Springer
  */
 public class Hero extends Mover {
@@ -38,9 +37,11 @@ public class Hero extends Mover {
     private int gems = 0;
     private int blueKey = 0;
     private int jump = 0;
-    
-    public Hero() {
+    private TileEngine te;
+
+    public Hero(TileEngine te) {
         super();
+        this.te = te;
         gravity = 9.8;
         acc = 0.6;
         drag = 0.8;
@@ -49,12 +50,11 @@ public class Hero extends Mover {
 
     @Override
     public void act() {
-        if(frame > 10)
-        {
-        frame = 1;
+        if (frame > 10) {
+            frame = 1;
         }
         handleInput();
-        
+
         velocityX *= drag;
         velocityY += acc;
         if (velocityY > gravity) {
@@ -68,115 +68,78 @@ public class Hero extends Mover {
                 return;
             }
         }
-        
-        for (Actor actor : getIntersectingObjects(Tile.class))
-        {
+
+        for (Actor actor : getIntersectingObjects(Tile.class)) {
             Tile tile = (Tile) actor;
-            if (tile != null && tile.type.equals("water"))
-            {     
-                getWorld().removeObject(this);
-                return;
+            if(tile != null) {
+                switch (tile.type) {
+                    case WATER:
+                        getWorld().removeObject(this);
+                        return;
+                    case BLUE_GEM:
+                        te.removeTile(tile);
+                        gems++;
+                        break;
+                    case BLUE_KEY:
+                        te.removeTile(tile);
+                        blueKey++;
+                        break;
+                    case GOLD_COIN:
+                        te.removeTile(tile);
+                        goldCoins++;
+                        return;
+                    case SILVER_COIN:
+                        te.removeTile(tile);
+                        silverCoins++;
+                        return;
+                    case BRONZE_COIN:
+                        te.removeTile(tile);
+                        bronzeCoins++;
+                        return;
+                }
             }
+
         }
-        
-        for (Actor actor : getIntersectingObjects(Tile.class))
-        {
-            Tile tile = (Tile) actor;
-            if (tile != null && tile.type.equals("blueGem"))
-            {     
-                getWorld().removeObject(tile);
-                gems ++;
-                return;
-            }
-        }
-        
-        for (Actor actor : getIntersectingObjects(Tile.class))
-        {
-            Tile tile = (Tile) actor;
-            if (tile != null && tile.type.equals("blueKey"))
-            {     
-                getWorld().removeObject(tile);
-                blueKey ++;
-                return;
-            }
-        }
-        
-        for (Actor actor : getIntersectingObjects(Tile.class))
-        {
-            Tile tile = (Tile) actor;
-            if (tile != null && tile.type.equals("goldCoin"))
-            {     
-                getWorld().removeObject(tile);
-                goldCoins ++;
-                return;
-            }
-        }
-        
-        for (Actor actor : getIntersectingObjects(Tile.class))
-        {
-            Tile tile = (Tile) actor;
-            if (tile != null && tile.type.equals("silverCoin"))
-            {     
-                getWorld().removeObject(tile);
-                silverCoins ++;
-                return;
-            }
-        }
-        
-        for (Actor actor : getIntersectingObjects(Tile.class))
-        {
-            Tile tile = (Tile) actor;
-            if (tile != null && tile.type.equals("blueKey"))
-            {     
-                getWorld().removeObject(tile);
-                blueKey ++;
-                return;
-            }
-        }
+
+
     }
 
-    boolean onGround(){
-        Actor under = getOneObjectAtOffset(0,getImage().getHeight()/2, Tile.class);
-        return under!= null;
+    boolean onGround() {
+        Actor under = getOneObjectAtOffset(0, getImage().getHeight() / 2, Tile.class);
+        return under != null;
     }
-
 
 
     public void handleInput() {
-        if (onGround() == true)
-        {
-            if(Greenfoot.isKeyDown("w") && Greenfoot.isKeyDown("d")){
+
+        if (onGround() == true) {
+            if (Greenfoot.isKeyDown("w") && Greenfoot.isKeyDown("d")) {
                 velocityY = -15;
                 velocityX = 3;
                 setImage("p1_jump.png");
                 jump++;
+            } else if (Greenfoot.isKeyDown("w") && Greenfoot.isKeyDown("a")) {
+                velocityY = -15;
+                velocityX = -3;
+                setImage("p1_jump L.png");
+                jump++;
+            } else if (Greenfoot.isKeyDown("w")) {
+                velocityY = -15;
+                setImage("p1_jump.png");
+                jump++;
+                //Greenfoot.playSound("Jump.mp3");
             }
-              else if(Greenfoot.isKeyDown("w") && Greenfoot.isKeyDown("a")){
-                  velocityY = -15;
-                  velocityX = -3;
-                  setImage("p1_jump L.png");
-                  jump++;
-                }
-                 else if(Greenfoot.isKeyDown("w")) {
-                     velocityY = -15;
-                     setImage("p1_jump.png");
-                     jump++;
-                     //Greenfoot.playSound("Jump.mp3");
-                    }
         }
 
-        if(Greenfoot.isKeyDown("s")){
+        if (Greenfoot.isKeyDown("s")) {
             setImage("p1_duck.png");
-        }
-        else if (Greenfoot.isKeyDown("d")) {
+        } else if (Greenfoot.isKeyDown("d")) {
             velocityX = 4;
             animateRight();
-        }
-        else if (Greenfoot.isKeyDown("a")) {
+        } else if (Greenfoot.isKeyDown("a")) {
             velocityX = -4;
             animateLeft();
-        } 
-        else {
+        } else {
             setImage("p1_front.png");
         }
     }
@@ -188,110 +151,66 @@ public class Hero extends Mover {
     public int getHeight() {
         return getImage().getHeight();
     }
-    
-    public void animateRight(){
-        if(frame == 1)
-        {
+
+    public void animateRight() {
+        if (frame == 1) {
             setImage(run12);
-        }
-        else if(frame == 2)
-        {
+        } else if (frame == 2) {
             setImage(run13);
-        }
-        else if(frame == 3)
-        {
+        } else if (frame == 3) {
             setImage(run14);
-        }
-        else if(frame == 4)
-        {
+        } else if (frame == 4) {
             setImage(run15);
-        }
-        else if(frame == 5)
-        {
+        } else if (frame == 5) {
             setImage(run16);
-        }
-        else if(frame == 6)
-        {
+        } else if (frame == 6) {
             setImage(run17);
-        }
-        else if(frame == 7)
-        {
+        } else if (frame == 7) {
             setImage(run18);
-        }
-        else if(frame == 8)
-        {
+        } else if (frame == 8) {
             setImage(run19);
-        }
-        else if(frame == 9)
-        {
+        } else if (frame == 9) {
             setImage(run20);
-        }
-        else if(frame == 10)
-        {
+        } else if (frame == 10) {
             setImage(run21);
-        }
-        else if(frame == 11)
-        {
+        } else if (frame == 11) {
             setImage(run22);
             return;
         }
 
 
-
-        frame ++;
+        frame++;
 
     }
-    
-    public void animateLeft(){
-        if(frame == 1)
-        {
+
+    public void animateLeft() {
+        if (frame == 1) {
             setImage(run1);
-        }
-        else if(frame == 2)
-        {
+        } else if (frame == 2) {
             setImage(run2);
-        }
-        else if(frame == 3)
-        {
+        } else if (frame == 3) {
             setImage(run3);
-        }
-        else if(frame == 4)
-        {
+        } else if (frame == 4) {
             setImage(run4);
-        }
-        else if(frame == 5)
-        {
+        } else if (frame == 5) {
             setImage(run5);
-        }
-        else if(frame == 6)
-        {
+        } else if (frame == 6) {
             setImage(run6);
-        }
-        else if(frame == 7)
-        {
+        } else if (frame == 7) {
             setImage(run7);
-        }
-        else if(frame == 8)
-        {
+        } else if (frame == 8) {
             setImage(run8);
-        }
-        else if(frame == 9)
-        {
+        } else if (frame == 9) {
             setImage(run9);
-        }
-        else if(frame == 10)
-        {
+        } else if (frame == 10) {
             setImage(run10);
-        }
-        else if(frame == 11)
-        {
+        } else if (frame == 11) {
             setImage(run11);
             return;
         }
 
 
-
-        frame ++;
+        frame++;
 
     }
 }
