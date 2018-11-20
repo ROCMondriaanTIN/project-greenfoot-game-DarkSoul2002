@@ -12,10 +12,11 @@ public class Enemy extends Mover {
     private int xMax;
     private boolean firstAct;
     private int speed;
+    private int frame = 1;
 
     public Enemy() {
         super();
-        setImage("snailWalk1.png");
+        animateRight();
         getImage().mirrorHorizontally();
         walkRange = 140;
         firstAct = true;
@@ -37,12 +38,28 @@ public class Enemy extends Mover {
         applyVelocity();
         if (getX() >= xMax) {
             speed *= -1;
+            frame ++;
             x = xMax;
             getImage().mirrorHorizontally();
         } else if (getX() <= xMin) {
             speed *= -1;
+            frame ++;
             x = xMin;
             getImage().mirrorHorizontally();
         }
+    }
+    
+     private void animateRight() {
+        if (frame == 1) {
+            setImage("snailWalk1.png");
+            frame ++;
+        } 
+        else if (frame == 2) {
+            setImage("snailWalk2.png");
+            frame ++;
+            return;
+        }
+        
+        
     }
 }

@@ -38,6 +38,7 @@ public class Hero extends Mover {
     private int blueKey = 0;
     private int jump = 0;
     private TileEngine te;
+    int i = 1;
 
     public Hero(TileEngine te) {
         super();
@@ -106,39 +107,60 @@ public class Hero extends Mover {
 
     boolean onGround() {
         Actor under = getOneObjectAtOffset(0, getImage().getHeight() / 2, Tile.class);
-        return under != null;
+        Actor underLeft = getOneObjectAtOffset(-(getWidth() / 2), getImage().getHeight() / 2, Tile.class);
+        Actor underRight = getOneObjectAtOffset((getWidth() / 2), getImage().getHeight() / 2, Tile.class);
+        
+        Tile underTile = (Tile)under;
+        if(underTile != null) {
+            if(underTile.isSolid) {
+                return true;
+            }
+        }
+        
+        Tile underTileLeft = (Tile)underLeft;
+        if(underTileLeft != null) {
+            if(underTileLeft.isSolid) {
+                return true;
+            }
+        }
+        
+        Tile underTileRight = (Tile)underRight;
+        if(underTileRight != null) {
+            if(underTileRight.isSolid) {
+                return true;
+            }
+        }
+        
+        return false;
     }
 
 
     public void handleInput() {
-
         if (onGround() == true) {
-            if (Greenfoot.isKeyDown("w") && Greenfoot.isKeyDown("d")) {
+            if (Greenfoot.isKeyDown("w")) {
                 velocityY = -15;
-                velocityX = 3;
-                setImage("p1_jump.png");
+                //setImage("p1_jump.png");
                 jump++;
-            } else if (Greenfoot.isKeyDown("w") && Greenfoot.isKeyDown("a")) {
-                velocityY = -15;
-                velocityX = -3;
-                setImage("p1_jump L.png");
-                jump++;
-            } else if (Greenfoot.isKeyDown("w")) {
-                velocityY = -15;
-                setImage("p1_jump.png");
-                jump++;
-                //Greenfoot.playSound("Jump.mp3");
+                sound();
             }
+        }
+        
+        if(onGround() == false) {
+            setImage("p1_jump.png");
         }
 
         if (Greenfoot.isKeyDown("s")) {
             setImage("p1_duck.png");
         } else if (Greenfoot.isKeyDown("d")) {
             velocityX = 4;
-            animateRight();
+            if(onGround()) {
+               animateRight(); 
+            }
         } else if (Greenfoot.isKeyDown("a")) {
             velocityX = -4;
-            animateLeft();
+            if(onGround()) {
+                animateLeft();
+            }
         } else {
             setImage("p1_front.png");
         }
@@ -150,6 +172,13 @@ public class Hero extends Mover {
 
     public int getHeight() {
         return getImage().getHeight();
+    }
+    
+    public void  sound(){
+        GreenfootSound  sound = new GreenfootSound("Jump.mp3"); // create a sound object
+        sound.setVolume(25); // adjust the volume of the sound
+        sound.play(); // play the sound
+        ;
     }
 
     public void animateRight() {
@@ -213,4 +242,5 @@ public class Hero extends Mover {
         frame++;
 
     }
+    GreenfootSound song = new GreenfootSound ( "Jump.mp3" );
 }
