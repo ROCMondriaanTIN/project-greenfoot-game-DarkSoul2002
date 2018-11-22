@@ -6,16 +6,20 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class TitleScreen extends World
+public class TitleScreen extends Actor
+
 {
 
     /**
      * Constructor for objects of class TitleScreen.
      * 
      */
-    public TitleScreen()
+    public void act()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1); 
-    }
+        setImage("Titel.jpg");
+        if(Greenfoot.isKeyDown("enter")){
+            getWorld().removeObject(this);}
+        }
 }
+ 
+

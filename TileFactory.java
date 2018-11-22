@@ -141,9 +141,6 @@ public class TileFactory {
             case 37:
                 tile = new Tile("coinSilver.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, TileType.SILVER_COIN);
                 break;
-            case 38:
-                tile = new Tile("coinBronze.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, TileType.BRONZE_COIN);
-                break;    
             case 39:
                 tile = new Tile("keyBlue.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, TileType.BLUE_KEY);
                 break;

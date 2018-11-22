@@ -31,14 +31,14 @@ public class Hero extends Mover {
     private GreenfootImage run21 = new GreenfootImage("p1_walk10.png");
     private GreenfootImage run22 = new GreenfootImage("p1_walk11.png");
     private int frame = 1;
-    private int goldCoins = 0;
-    private int silverCoins = 0;
-    private int bronzeCoins = 0;
+    public int coins = 0;
     private int gems = 0;
     private int blueKey = 0;
-    private int jump = 0;
+    private int levens = 2;
     private TileEngine te;
-    int i = 1;
+    private int player = 2;
+    private String mapPlayer = "p2/";
+
 
     public Hero(TileEngine te) {
         super();
@@ -46,7 +46,7 @@ public class Hero extends Mover {
         gravity = 9.8;
         acc = 0.6;
         drag = 0.8;
-        setImage("p1.png");
+        backgroundMusic();
     }
 
     @Override
@@ -65,7 +65,8 @@ public class Hero extends Mover {
 
         for (Actor enemy : getIntersectingObjects(Enemy.class)) {
             if (enemy != null) {
-                getWorld().removeObject(this);
+                Levens.levens --;
+                respawn();
                 return;
             }
         }
@@ -75,7 +76,8 @@ public class Hero extends Mover {
             if(tile != null) {
                 switch (tile.type) {
                     case WATER:
-                        getWorld().removeObject(this);
+                        Levens.levens --;
+                        respawn();
                         return;
                     case BLUE_GEM:
                         te.removeTile(tile);
@@ -87,22 +89,15 @@ public class Hero extends Mover {
                         break;
                     case GOLD_COIN:
                         te.removeTile(tile);
-                        goldCoins++;
+                        coins = coins  + 2;
                         return;
                     case SILVER_COIN:
                         te.removeTile(tile);
-                        silverCoins++;
-                        return;
-                    case BRONZE_COIN:
-                        te.removeTile(tile);
-                        bronzeCoins++;
+                        coins++;
                         return;
                 }
             }
-
         }
-
-
     }
 
     boolean onGround() {
@@ -133,38 +128,53 @@ public class Hero extends Mover {
         
         return false;
     }
+    
 
 
     public void handleInput() {
-        if (onGround() == true) {
-            if (Greenfoot.isKeyDown("w")) {
-                velocityY = -15;
-                //setImage("p1_jump.png");
-                jump++;
-                sound();
-            }
+        if (Greenfoot.isKeyDown("w") && onGround() == true) {
+            velocityY = -18;
+            sound();
         }
         
         if(onGround() == false) {
-            setImage("p1_jump.png");
+            setImage(mapPlayer + player +"_jump.png");
         }
 
         if (Greenfoot.isKeyDown("s")) {
-            setImage("p1_duck.png");
-        } else if (Greenfoot.isKeyDown("d")) {
-            velocityX = 4;
+            setImage(mapPlayer + player +"_duck.png");
+        } 
+        else if (Greenfoot.isKeyDown("d")) {
+            velocityX = 7;
             if(onGround()) {
                animateRight(); 
             }
-        } else if (Greenfoot.isKeyDown("a")) {
-            velocityX = -4;
+        } 
+        else if (Greenfoot.isKeyDown("a")) {
+            velocityX = -7;
             if(onGround()) {
                 animateLeft();
             }
-        } else {
-            setImage("p1_front.png");
+        } 
+        else {
+            setImage("p2/" + player +"_front.png");
         }
     }
+    
+    public void respawn() {
+        switch (levens) {
+                    case 2:
+                        levens --;
+                        setLocation(100, 1100);
+                        return;
+                    case 1:
+                        levens --;
+                        break;
+                        default:
+                        getWorld().removeObject(this);
+                        break;
+                    }
+                }
 
     public int getWidth() {
         return getImage().getWidth();
@@ -174,36 +184,42 @@ public class Hero extends Mover {
         return getImage().getHeight();
     }
     
-    public void  sound(){
+    private void  sound(){
         GreenfootSound  sound = new GreenfootSound("Jump.mp3"); // create a sound object
         sound.setVolume(25); // adjust the volume of the sound
+        sound.play(); // play the sound
+        ;
+    }
+    
+    private void  backgroundMusic(){
+        GreenfootSound  sound = new GreenfootSound("Triumph.mp3"); // create a sound object
+        sound.setVolume(20); // adjust the volume of the sound
         sound.play(); // play the sound
         ;
     }
 
     public void animateRight() {
         if (frame == 1) {
-            setImage(run12);
+            setImage("p2/" + player + "_walk01.png");
         } else if (frame == 2) {
-            setImage(run13);
+            setImage("p2/" + player + "_walk02.png");
         } else if (frame == 3) {
-            setImage(run14);
+            setImage("p2/" + player + "_walk03.png");
         } else if (frame == 4) {
-            setImage(run15);
+            setImage("p2/" + player + "_walk04.png");
         } else if (frame == 5) {
-            setImage(run16);
+            setImage("p2/" + player + "_walk05.png");
         } else if (frame == 6) {
-            setImage(run17);
+            setImage("p2/" + player + "_walk06.png");
         } else if (frame == 7) {
-            setImage(run18);
+            setImage("p2/" + player + "_walk07.png");
         } else if (frame == 8) {
-            setImage(run19);
+            setImage("p2/" + player + "_walk08.png");
         } else if (frame == 9) {
-            setImage(run20);
+            setImage("p2/" + player + "_walk09.png");
         } else if (frame == 10) {
-            setImage(run21);
+            setImage("p2/" + player + "_walk10.png");
         } else if (frame == 11) {
-            setImage(run22);
             return;
         }
 
@@ -214,27 +230,26 @@ public class Hero extends Mover {
 
     public void animateLeft() {
         if (frame == 1) {
-            setImage(run1);
+            setImage(mapPlayer + player + "_walk01 L.png");
         } else if (frame == 2) {
-            setImage(run2);
+            setImage(mapPlayer + player + "_walk02 L.png");
         } else if (frame == 3) {
-            setImage(run3);
+            setImage(mapPlayer + player + "_walk03 L.png");
         } else if (frame == 4) {
-            setImage(run4);
+            setImage(mapPlayer + player + "_walk04 L.png");
         } else if (frame == 5) {
-            setImage(run5);
+            setImage(mapPlayer + player + "_walk05 L.png");
         } else if (frame == 6) {
-            setImage(run6);
+            setImage(mapPlayer + player + "_walk06 L.png");
         } else if (frame == 7) {
-            setImage(run7);
+            setImage(mapPlayer + player + "_walk07 L.png");
         } else if (frame == 8) {
-            setImage(run8);
+            setImage(mapPlayer + player + "_walk08 L.png");
         } else if (frame == 9) {
-            setImage(run9);
+            setImage(mapPlayer + player + "_walk09 L.png");
         } else if (frame == 10) {
-            setImage(run10);
+            setImage(mapPlayer + player + "_walk10 L.png");
         } else if (frame == 11) {
-            setImage(run11);
             return;
         }
 
@@ -242,5 +257,4 @@ public class Hero extends Mover {
         frame++;
 
     }
-    GreenfootSound song = new GreenfootSound ( "Jump.mp3" );
 }
