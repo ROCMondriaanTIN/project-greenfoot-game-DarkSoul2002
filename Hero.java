@@ -31,18 +31,19 @@ public class Hero extends Mover {
     private GreenfootImage run21 = new GreenfootImage("p1_walk10.png");
     private GreenfootImage run22 = new GreenfootImage("p1_walk11.png");
     private int frame = 1;
-    public int coins = 0;
+    
     private int gems = 0;
     private int blueKey = 0;
     private int levens = 2;
     private TileEngine te;
     private int player = 2;
     private String mapPlayer = "p2/";
+    private Overlay overlay;
 
-
-    public Hero(TileEngine te) {
+    public Hero(TileEngine te, Overlay overlay) {
         super();
         this.te = te;
+        this.overlay = overlay;
         gravity = 9.8;
         acc = 0.6;
         drag = 0.8;
@@ -89,11 +90,12 @@ public class Hero extends Mover {
                         break;
                     case GOLD_COIN:
                         te.removeTile(tile);
-                        coins = coins  + 2;
+                        this.overlay.addCoin();
+                        this.overlay.addCoin();
                         return;
                     case SILVER_COIN:
                         te.removeTile(tile);
-                        coins++;
+                        this.overlay.addCoin();
                         return;
                 }
             }
