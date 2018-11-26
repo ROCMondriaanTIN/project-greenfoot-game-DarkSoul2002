@@ -1,5 +1,5 @@
 import greenfoot.*;
-
+import javax.swing.JOptionPane;
 /**
  * @author R. Springer
  */
@@ -31,16 +31,15 @@ public class Hero extends Mover {
     private GreenfootImage run21 = new GreenfootImage("p1_walk10.png");
     private GreenfootImage run22 = new GreenfootImage("p1_walk11.png");
     private int frame = 1;
-    
     private int gems = 0;
     private int levens = 2;
     private TileEngine te;
-    private int player = 2;
-    private String mapPlayer = "p2/";
     private Overlay overlay;
+    public String personage = "1";
 
     public Hero(TileEngine te, Overlay overlay) {
         super();
+        personage();
         this.te = te;
         this.overlay = overlay;
         gravity = 9.8;
@@ -100,6 +99,22 @@ public class Hero extends Mover {
             }
         }
     }
+    
+    public void personage() {
+        personage = JOptionPane.showInputDialog("kies een personage");
+        if (personage.equals("1"))
+        {
+            personage = "1";
+        }
+        else if (personage.equals("2"))
+        {
+            personage = "2";
+        }
+        else if (personage.equals("3"))
+        {
+            personage = "3";
+        }
+    }
 
     boolean onGround() {
         Actor under = getOneObjectAtOffset(0, getImage().getHeight() / 2, Tile.class);
@@ -130,8 +145,6 @@ public class Hero extends Mover {
         return false;
     }
     
-
-
     public void handleInput() {
         if (Greenfoot.isKeyDown("w") && onGround() == true) {
             velocityY = -18;
@@ -139,11 +152,11 @@ public class Hero extends Mover {
         }
         
         if(onGround() == false) {
-            setImage(mapPlayer + player +"_jump.png");
+            setImage("p" + personage +"_jump.png");
         }
 
         if (Greenfoot.isKeyDown("s")) {
-            setImage(mapPlayer + player +"_duck.png");
+            setImage("p" + personage +"_duck.png");
         } 
         else if (Greenfoot.isKeyDown("d")) {
             velocityX = 7;
@@ -158,7 +171,7 @@ public class Hero extends Mover {
             }
         } 
         else {
-            setImage("p2/" + player +"_front.png");
+            setImage("p" + personage +"_front.png");
         }
     }
     
@@ -201,25 +214,25 @@ public class Hero extends Mover {
 
     public void animateRight() {
         if (frame == 1) {
-            setImage("p2/" + player + "_walk01.png");
+            setImage("p" + personage + "_walk01.png");
         } else if (frame == 2) {
-            setImage("p2/" + player + "_walk02.png");
+            setImage("p" + personage + "_walk02.png");
         } else if (frame == 3) {
-            setImage("p2/" + player + "_walk03.png");
+            setImage("p" + personage + "_walk03.png");
         } else if (frame == 4) {
-            setImage("p2/" + player + "_walk04.png");
+            setImage("p" + personage + "_walk04.png");
         } else if (frame == 5) {
-            setImage("p2/" + player + "_walk05.png");
+            setImage("p" + personage + "_walk05.png");
         } else if (frame == 6) {
-            setImage("p2/" + player + "_walk06.png");
+            setImage("p" + personage + "_walk06.png");
         } else if (frame == 7) {
-            setImage("p2/" + player + "_walk07.png");
+            setImage("p" + personage + "_walk07.png");
         } else if (frame == 8) {
-            setImage("p2/" + player + "_walk08.png");
+            setImage("p" + personage + "_walk08.png");
         } else if (frame == 9) {
-            setImage("p2/" + player + "_walk09.png");
+            setImage("p" + personage + "_walk09.png");
         } else if (frame == 10) {
-            setImage("p2/" + player + "_walk10.png");
+            setImage("p" + personage + "_walk10.png");
         } else if (frame == 11) {
             return;
         }
@@ -231,25 +244,25 @@ public class Hero extends Mover {
 
     public void animateLeft() {
         if (frame == 1) {
-            setImage(mapPlayer + player + "_walk01 L.png");
+            setImage("p" + personage + "_walk01 L.png");
         } else if (frame == 2) {
-            setImage(mapPlayer + player + "_walk02 L.png");
+            setImage("p" + personage + "_walk02 L.png");
         } else if (frame == 3) {
-            setImage(mapPlayer + player + "_walk03 L.png");
+            setImage("p" + personage + "_walk03 L.png");
         } else if (frame == 4) {
-            setImage(mapPlayer + player + "_walk04 L.png");
+            setImage("p" + personage + "_walk04 L.png");
         } else if (frame == 5) {
-            setImage(mapPlayer + player + "_walk05 L.png");
+            setImage("p" + personage + "_walk05 L.png");
         } else if (frame == 6) {
-            setImage(mapPlayer + player + "_walk06 L.png");
+            setImage("p" + personage + "_walk06 L.png");
         } else if (frame == 7) {
-            setImage(mapPlayer + player + "_walk07 L.png");
+            setImage("p" + personage + "_walk07 L.png");
         } else if (frame == 8) {
-            setImage(mapPlayer + player + "_walk08 L.png");
+            setImage("p" + personage + "_walk08 L.png");
         } else if (frame == 9) {
-            setImage(mapPlayer + player + "_walk09 L.png");
+            setImage("p" + personage + "_walk09 L.png");
         } else if (frame == 10) {
-            setImage(mapPlayer + player + "_walk10 L.png");
+            setImage("p" + personage + "_walk10 L.png");
         } else if (frame == 11) {
             return;
         }
