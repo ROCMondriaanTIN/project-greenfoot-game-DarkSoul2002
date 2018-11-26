@@ -33,7 +33,6 @@ public class Hero extends Mover {
     private int frame = 1;
     
     private int gems = 0;
-    private int blueKey = 0;
     private int levens = 2;
     private TileEngine te;
     private int player = 2;
@@ -82,14 +81,14 @@ public class Hero extends Mover {
                         return;
                     case BLUE_GEM:
                         te.removeTile(tile);
-                        gems++;
+                        this.overlay.addDiamond();
                         break;
                     case BLUE_KEY:
                         te.removeTile(tile);
-                        blueKey++;
+                        this.overlay.addKey();
                         break;
                     case GOLD_COIN:
-                        te.removeTile(tile);
+                        te.removeTile(tile);                       
                         this.overlay.addCoin();
                         this.overlay.addCoin();
                         return;
