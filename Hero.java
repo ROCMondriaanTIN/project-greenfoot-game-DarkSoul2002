@@ -4,44 +4,20 @@ import javax.swing.JOptionPane;
  * @author R. Springer
  */
 public class Hero extends Mover {
-
     private final double gravity;
     private final double acc;
     private final double drag;
-    private GreenfootImage run1 = new GreenfootImage("p1_walk01 L.png");
-    private GreenfootImage run2 = new GreenfootImage("p1_walk02 L.png");
-    private GreenfootImage run3 = new GreenfootImage("p1_walk03 L.png");
-    private GreenfootImage run4 = new GreenfootImage("p1_walk04 L.png");
-    private GreenfootImage run5 = new GreenfootImage("p1_walk05 L.png");
-    private GreenfootImage run6 = new GreenfootImage("p1_walk06 L.png");
-    private GreenfootImage run7 = new GreenfootImage("p1_walk07 L.png");
-    private GreenfootImage run8 = new GreenfootImage("p1_walk08 L.png");
-    private GreenfootImage run9 = new GreenfootImage("p1_walk09 L.png");
-    private GreenfootImage run10 = new GreenfootImage("p1_walk10 L.png");
-    private GreenfootImage run11 = new GreenfootImage("p1_walk11 L.png");
-    private GreenfootImage run12 = new GreenfootImage("p1_walk01.png");
-    private GreenfootImage run13 = new GreenfootImage("p1_walk02.png");
-    private GreenfootImage run14 = new GreenfootImage("p1_walk03.png");
-    private GreenfootImage run15 = new GreenfootImage("p1_walk04.png");
-    private GreenfootImage run16 = new GreenfootImage("p1_walk05.png");
-    private GreenfootImage run17 = new GreenfootImage("p1_walk06.png");
-    private GreenfootImage run18 = new GreenfootImage("p1_walk07.png");
-    private GreenfootImage run19 = new GreenfootImage("p1_walk08.png");
-    private GreenfootImage run20 = new GreenfootImage("p1_walk09.png");
-    private GreenfootImage run21 = new GreenfootImage("p1_walk10.png");
-    private GreenfootImage run22 = new GreenfootImage("p1_walk11.png");
     private int frame = 1;
-    private int gems = 0;
     private int levens = 2;
     private TileEngine te;
     private Overlay overlay;
     public String personage = "1";
-
+    private int key = 0;
     public Hero(TileEngine te, Overlay overlay) {
         super();
-        personage();
         this.te = te;
         this.overlay = overlay;
+        personage();
         gravity = 9.8;
         acc = 0.6;
         drag = 0.8;
@@ -84,13 +60,24 @@ public class Hero extends Mover {
                         break;
                     case BLUE_KEY:
                         te.removeTile(tile);
+                        key = key + 3;
                         this.overlay.addKey();
+                        break;
+                    case BLUE_LOCK:
+                    if (key != 0) {
+                        te.removeTile(tile);
+                        key --;
+                        break;
+                    }
                         break;
                     case GOLD_COIN:
                         te.removeTile(tile);                       
                         this.overlay.addCoin();
                         this.overlay.addCoin();
                         return;
+                    case DOOR:  
+                        Greenfoot.setWorld(new DemoWorld());
+                        return;    
                     case SILVER_COIN:
                         te.removeTile(tile);
                         this.overlay.addCoin();

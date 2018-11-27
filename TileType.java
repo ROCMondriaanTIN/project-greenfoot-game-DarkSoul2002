@@ -13,8 +13,10 @@ public enum TileType {
     GROUND,
     WATER,
     BOX,
+    DOOR,
     BLUE_GEM,
     BLUE_KEY,
+    BLUE_LOCK,
     GOLD_COIN,
     SILVER_COIN,
     BRONZE_COIN

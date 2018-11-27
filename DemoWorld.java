@@ -47,7 +47,7 @@ public class DemoWorld extends World {
         // Declarenre en initialiseren van de camera klasse met de TileEngine klasse 
         // zodat de camera weet welke tiles allemaal moeten meebewegen met de camera
         Camera camera = new Camera(te);
-
+        Overlay overlay = new Overlay();
         // Initialiseren van de CollisionEngine zodat de speler niet door de tile heen kan lopen.
         // De collision engine kijkt alleen naar de tiles die de variabele solid op true hebben staan.
         ce = new CollisionEngine(te, camera);
@@ -60,6 +60,7 @@ public class DemoWorld extends World {
         addObject(camera, 0, 0);
         addObject(hero, 300, 200);
         addObject(new Enemy(), 1170, 410);
+        addObject(overlay, getWidth()/2, getHeight()/2);
 
         // Toevoegen van de mover instantie of een extentie hiervan
         ce.addCollidingMover(hero);
