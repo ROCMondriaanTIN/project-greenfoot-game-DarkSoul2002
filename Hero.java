@@ -8,7 +8,7 @@ public class Hero extends Mover {
     private final double acc;
     private final double drag;
     private int frame = 1;
-    private int levens = 2;
+    public static int levens = 2;
     private TileEngine te;
     private Overlay overlay;
     public String personage = "1";
@@ -40,7 +40,7 @@ public class Hero extends Mover {
 
         for (Actor enemy : getIntersectingObjects(Enemy.class)) {
             if (enemy != null) {
-                Levens.levens --;
+                Levens.levensHud --;
                 respawn();
                 return;
             }
@@ -51,7 +51,7 @@ public class Hero extends Mover {
             if(tile != null) {
                 switch (tile.type) {
                     case WATER:
-                        Levens.levens --;
+                        Levens.levensHud --;
                         respawn();
                         return;
                     case BLUE_GEM:
@@ -102,6 +102,8 @@ public class Hero extends Mover {
             personage = "3";
         }
     }
+    
+    
 
     boolean onGround() {
         Actor under = getOneObjectAtOffset(0, getImage().getHeight() / 2, Tile.class);

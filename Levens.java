@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Levens extends Actor
 {
-    public static int levens = 2;
+    public static int levensHud = 2;
 
     public void act() 
     {
@@ -17,21 +17,25 @@ public class Levens extends Actor
 
     public void levens()
     {
-        switch (levens) {
+        switch (levensHud) {
             case 0:
-                setImage("hud_heartEmpty.png");
-                break;
+                    setImage("hud_heartEmpty.png");
+                    break;
                 case 1:
-                setImage("hud_heartHalf.png");
-                break;
+                    setImage("hud_heartHalf.png");
+                    break;
                 case 2:
-                setImage("hud_heartFull.png");
-                return;
+                    setImage("hud_heartFull.png");
+                    break;
+                default:
+                    setImage("hud_heartEmpty.png");
+                    return;
+
         }
     }
     
     public void coins()
     {
-        
+
     }
 }

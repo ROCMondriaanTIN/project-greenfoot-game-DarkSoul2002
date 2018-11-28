@@ -46,4 +46,13 @@ public class Overlay extends Actor
         getWorld().addObject(diamonds, (diamondTeller+ 50), 200);
         diamondTeller = diamondTeller + 10;
     }
+    
+    public void regen() {
+        if (Overlay.coinTeller >= 30)
+        {
+            Overlay.coinTeller = Overlay.coinTeller - 30;
+            Levens.levensHud ++;
+            Hero.levens ++;
+        }
+    }
 }
