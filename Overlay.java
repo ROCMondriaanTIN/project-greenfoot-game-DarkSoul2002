@@ -11,6 +11,7 @@ import java.util.*;
 public class Overlay extends Actor
 {
     public static int coinTeller = 0;
+    public static int coinOffset = 0;
     public static int diamondTeller = 0;
     ArrayList<Actor> coins;
     ArrayList<Actor> lifes;
@@ -19,6 +20,7 @@ public class Overlay extends Actor
     
     public Overlay() {
         super();
+        regen();
         setImage("emptyHud.png");
         coins = new ArrayList<>();
         lifes = new ArrayList<>();
@@ -26,12 +28,25 @@ public class Overlay extends Actor
         keys = new ArrayList<>();
     }
     
+    public void regen() {
+        if (coinTeller > 39)
+        {
+            coins.clear();
+            for (int i = 0; i < 41; i++)
+            {
+                getWorld().removeObject(coin);
+            }
+            coinTeller = coinTeller - 40;  
+            coinOffset = coinOffset - 280;
+        }
+    }
+    
     public void addCoin() {
         Actor coin = new Coin();
         coin.setImage("hud_coins.png");
         coins.add(coin);
-        getWorld().addObject(coin, (coinTeller+ 50), 100);
-        coinTeller = coinTeller + 10;
+        getWorld().addObject(coin, (coinOffset+ 50), 100);
+        coinOffset = coinOffset + 7;
     }
     
     public void addKey() {
@@ -45,14 +60,5 @@ public class Overlay extends Actor
         diamonds.setImage("hud_gem_blue.png");
         getWorld().addObject(diamonds, (diamondTeller+ 50), 200);
         diamondTeller = diamondTeller + 10;
-    }
-    
-    public void regen() {
-        if (Overlay.coinTeller >= 30)
-        {
-            Overlay.coinTeller = Overlay.coinTeller - 30;
-            Levens.levensHud ++;
-            Hero.levens ++;
-        }
     }
 }

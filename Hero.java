@@ -8,7 +8,6 @@ public class Hero extends Mover {
     private final double acc;
     private final double drag;
     private int frame = 1;
-    public static int levens = 2;
     private TileEngine te;
     private Overlay overlay;
     public String personage = "1";
@@ -71,16 +70,23 @@ public class Hero extends Mover {
                     }
                         break;
                     case GOLD_COIN:
-                        te.removeTile(tile);                       
+                        te.removeTile(tile); 
+                        Overlay.coinOffset ++;
+                        Overlay.coinTeller ++;
+                        Overlay.coinTeller ++;
                         this.overlay.addCoin();
                         this.overlay.addCoin();
+                        this.overlay.regen();
                         return;
                     case DOOR:  
                         Greenfoot.setWorld(new DemoWorld());
                         return;    
                     case SILVER_COIN:
                         te.removeTile(tile);
+                        Overlay.coinOffset ++;
+                        Overlay.coinTeller ++;
                         this.overlay.addCoin();
+                        this.overlay.regen();
                         return;
                 }
             }
@@ -165,13 +171,9 @@ public class Hero extends Mover {
     }
     
     public void respawn() {
-        switch (levens) {
-                    case 2:
-                        levens --;
-                        setLocation(100, 1100);
-                        return;
+        switch (Levens.levensHud) {
                     case 1:
-                        levens --;
+                        setLocation(100, 1100);
                         break;
                         default:
                         getWorld().removeObject(this);

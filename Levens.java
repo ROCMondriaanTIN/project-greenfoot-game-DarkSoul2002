@@ -18,7 +18,7 @@ public class Levens extends Actor
     public void levens()
     {
         switch (levensHud) {
-            case 0:
+                case 0:
                     setImage("hud_heartEmpty.png");
                     break;
                 case 1:
