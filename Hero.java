@@ -74,9 +74,9 @@ public class Hero extends Mover {
                         Overlay.coinOffset ++;
                         Overlay.coinTeller ++;
                         Overlay.coinTeller ++;
-                        this.overlay.addCoin();
-                        this.overlay.addCoin();
-                        this.overlay.regen();
+                        this.overlay.addRemoveCoin();
+                        this.overlay.addRemoveCoin();
+                        this.overlay.addRemoveCoin();
                         return;
                     case DOOR:  
                         Greenfoot.setWorld(new DemoWorld());
@@ -85,8 +85,8 @@ public class Hero extends Mover {
                         te.removeTile(tile);
                         Overlay.coinOffset ++;
                         Overlay.coinTeller ++;
-                        this.overlay.addCoin();
-                        this.overlay.regen();
+                        this.overlay.addRemoveCoin();
+                        this.overlay.addRemoveCoin();
                         return;
                 }
             }
@@ -172,9 +172,15 @@ public class Hero extends Mover {
     
     public void respawn() {
         switch (Levens.levensHud) {
-                    case 1:
+                    case 3:
                         setLocation(100, 1100);
                         break;
+                    case 2:
+                        setLocation(100, 1100);
+                        break;
+                    case 1:
+                        setLocation(100, 1100);
+                        break;    
                         default:
                         getWorld().removeObject(this);
                         break;

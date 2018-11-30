@@ -20,33 +20,31 @@ public class Overlay extends Actor
     
     public Overlay() {
         super();
-        regen();
         setImage("emptyHud.png");
         coins = new ArrayList<>();
         lifes = new ArrayList<>();
         diamonds = new ArrayList<>();
         keys = new ArrayList<>();
     }
-    
-    public void regen() {
-        if (coinTeller > 39)
-        {
-            coins.clear();
-            for (int i = 0; i < 41; i++)
-            {
-                getWorld().removeObject(coin);
-            }
-            coinTeller = coinTeller - 40;  
-            coinOffset = coinOffset - 280;
-        }
-    }
-    
-    public void addCoin() {
+      
+    public void addRemoveCoin() {
         Actor coin = new Coin();
         coin.setImage("hud_coins.png");
         coins.add(coin);
         getWorld().addObject(coin, (coinOffset+ 50), 100);
         coinOffset = coinOffset + 7;
+        
+        if (coinTeller >= 40)
+        {
+            Levens.levensHud ++;
+            for (int i = 0; i < coins.size(); i++)
+            {
+                System.out.print(coins.get(i));
+                coins.remove(i);
+            }
+            coinTeller = 0;  
+            coinOffset = 0;
+        }
     }
     
     public void addKey() {
