@@ -39,8 +39,7 @@ public class Overlay extends Actor
             Levens.levensHud ++;
             for (int i = 0; i < coins.size(); i++)
             {
-                System.out.print(coins.get(i));
-                coins.remove(i);
+                getWorld().removeObject(coins.get(i));
             }
             coinTeller = 0;  
             coinOffset = 0;

@@ -72,10 +72,9 @@ public class Hero extends Mover {
                     case GOLD_COIN:
                         te.removeTile(tile); 
                         Overlay.coinOffset ++;
+                        this.overlay.addRemoveCoin();
                         Overlay.coinTeller ++;
                         Overlay.coinTeller ++;
-                        this.overlay.addRemoveCoin();
-                        this.overlay.addRemoveCoin();
                         this.overlay.addRemoveCoin();
                         return;
                     case DOOR:  
@@ -85,7 +84,6 @@ public class Hero extends Mover {
                         te.removeTile(tile);
                         Overlay.coinOffset ++;
                         Overlay.coinTeller ++;
-                        this.overlay.addRemoveCoin();
                         this.overlay.addRemoveCoin();
                         return;
                 }
