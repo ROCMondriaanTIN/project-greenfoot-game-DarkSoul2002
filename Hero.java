@@ -40,6 +40,7 @@ public class Hero extends Mover {
         for (Actor enemy : getIntersectingObjects(Enemy.class)) {
             if (enemy != null) {
                 Levens.levensHud --;
+                
                 respawn();
                 return;
             }
@@ -51,6 +52,7 @@ public class Hero extends Mover {
                 switch (tile.type) {
                     case WATER:
                         Levens.levensHud --;
+                        
                         respawn();
                         return;
                     case BLUE_GEM:
@@ -92,6 +94,7 @@ public class Hero extends Mover {
     }
     
     public void personage() {
+        if (LevelSelector.level1 == true) {
         personage = JOptionPane.showInputDialog("kies een personage");
         if (personage.equals("1"))
         {
@@ -105,6 +108,7 @@ public class Hero extends Mover {
         {
             personage = "3";
         }
+    }
     }
     
     

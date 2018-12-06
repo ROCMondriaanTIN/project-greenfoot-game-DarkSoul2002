@@ -73,7 +73,7 @@ public class MyWorld extends World {
         addObject(new Enemy(), 985, 1485);
         if (LevelSelector.level1 == false) {
             addObject(new LevelSelector(), 500, 400);
-            addObject(new TitleScreen(), 500, 400);
+            addObject(new TitleScreen(), 500, 400);  
         }
         
         addObject(overlay, getWidth()/2, getHeight()/2);

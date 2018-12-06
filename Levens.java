@@ -18,24 +18,16 @@ public class Levens extends Actor
     public void levens()
     {
         switch (levensHud) {
-                case 0:
-                    setImage("hud_heartEmpty.png");
-                    break;
+            case 0:
+                setImage("hud_heartEmpty.png");
+                break;
                 case 1:
-                    setImage("hud_heartHalf.png");
-                    break;
+                setImage("hud_heartHalf.png");
+                break;
                 case 2:
-                    setImage("hud_heartFull.png");
-                    break;
-                default:
-                    setImage("hud_heartEmpty.png");
-                    return;
-
+                setImage("hud_heartFull.png");
+                return;
         }
     }
     
-    public void coins()
-    {
-
-    }
 }

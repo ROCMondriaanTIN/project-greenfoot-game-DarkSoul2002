@@ -13,6 +13,7 @@ public class Overlay extends Actor
     public static int coinTeller = 0;
     public static int coinOffset = 0;
     public static int diamondTeller = 0;
+    public int lifeOffset = 0;
     ArrayList<Actor> coins;
     ArrayList<Actor> lifes;
     ArrayList<Actor> diamonds;
@@ -58,4 +59,7 @@ public class Overlay extends Actor
         getWorld().addObject(diamonds, (diamondTeller+ 50), 200);
         diamondTeller = diamondTeller + 10;
     }
+
+        
+    
 }
