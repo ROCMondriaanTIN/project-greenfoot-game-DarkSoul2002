@@ -33,11 +33,12 @@ public class Overlay extends Actor
         coin.setImage("hud_coins.png");
         coins.add(coin);
         getWorld().addObject(coin, (coinOffset+ 50), 100);
-        coinOffset = coinOffset + 7;
+        coinOffset += 7;
         
         if (coinTeller >= 40)
         {
             Levens.levensHud ++;
+            addLife();
             for (int i = 0; i < coins.size(); i++)
             {
                 getWorld().removeObject(coins.get(i));
@@ -57,9 +58,21 @@ public class Overlay extends Actor
         Actor diamonds = new Diamond();
         diamonds.setImage("hud_gem_blue.png");
         getWorld().addObject(diamonds, (diamondTeller+ 50), 200);
-        diamondTeller = diamondTeller + 10;
-    }
+        diamondTeller += 10;
+    }  
+    
+    public void addLife() {
+        Actor life = new Levens();
+        life.setImage("hud_heartFull.png");
+        lifes.add(life);
+        getWorld().addObject(life, (lifeOffset+ 50), 300);
+        lifeOffset += 10;
 
         
+        
+    }
     
+    public void removeLife() {
+        //getWorld().removeObject(life);
+    }
 }

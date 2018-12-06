@@ -75,8 +75,10 @@ public class MyWorld extends World {
             addObject(new LevelSelector(), 500, 400);
             addObject(new TitleScreen(), 500, 400);  
         }
-        
+
         addObject(overlay, getWidth()/2, getHeight()/2);
+        overlay.addLife();
+        overlay.addLife();
         // Initialiseren van de CollisionEngine zodat de speler niet door de tile heen kan lopen.
         // De collision engine kijkt alleen naar de tiles die de variabele solid op true hebben staan.
         ce = new CollisionEngine(te, camera);
