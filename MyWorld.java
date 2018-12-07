@@ -67,18 +67,18 @@ public class MyWorld extends World {
         // Alle objecten toevoegen aan de wereld: camera, main karakter en mogelijke enemies
         
         //addObject(new Coins(), 50, 100);
-        addObject(new Levens(), 50, 50);
         addObject(camera, 200, 1100);
         addObject(hero, 100, 1100);
         addObject(new Enemy(), 985, 1485);
+        addObject(overlay, getWidth()/2, getHeight()/2);
+        overlay.addLife();
+        overlay.addLife();
         if (LevelSelector.level1 == false) {
             addObject(new LevelSelector(), 500, 400);
             addObject(new TitleScreen(), 500, 400);  
         }
+        
 
-        addObject(overlay, getWidth()/2, getHeight()/2);
-        overlay.addLife();
-        overlay.addLife();
         // Initialiseren van de CollisionEngine zodat de speler niet door de tile heen kan lopen.
         // De collision engine kijkt alleen naar de tiles die de variabele solid op true hebben staan.
         ce = new CollisionEngine(te, camera);

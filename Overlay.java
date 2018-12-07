@@ -65,14 +65,17 @@ public class Overlay extends Actor
         Actor life = new Levens();
         life.setImage("hud_heartFull.png");
         lifes.add(life);
-        getWorld().addObject(life, (lifeOffset+ 50), 300);
-        lifeOffset += 10;
-
-        
-        
+        getWorld().addObject(life, (lifeOffset+ 50), 50);
+        lifeOffset += 55;
     }
     
     public void removeLife() {
-        //getWorld().removeObject(life);
+        int i = lifes.size();
+        i -= 1;
+        Actor life = lifes.get(i);
+        lifes.remove(life);
+        getWorld().removeObject(life);
+        lifeOffset -= 55;
+
     }
 }

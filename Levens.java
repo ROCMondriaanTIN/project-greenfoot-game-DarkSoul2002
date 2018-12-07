@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Levens extends Actor
 {
     public static int levensHud = 2;
-
+    /*
     public void act() 
     {
         levens();
@@ -29,5 +29,6 @@ public class Levens extends Actor
                 return;
         }
     }
+    */
     
 }

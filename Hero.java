@@ -40,7 +40,7 @@ public class Hero extends Mover {
         for (Actor enemy : getIntersectingObjects(Enemy.class)) {
             if (enemy != null) {
                 Levens.levensHud --;
-                
+                overlay.removeLife();
                 respawn();
                 return;
             }
@@ -52,7 +52,7 @@ public class Hero extends Mover {
                 switch (tile.type) {
                     case WATER:
                         Levens.levensHud --;
-                        
+                        overlay.removeLife();
                         respawn();
                         return;
                     case BLUE_GEM:
@@ -110,7 +110,7 @@ public class Hero extends Mover {
         }
     }
     }
-    
+        
     
 
     boolean onGround() {
@@ -141,6 +141,7 @@ public class Hero extends Mover {
         
         return false;
     }
+     
     
     public void handleInput() {
         if (Greenfoot.isKeyDown("w") && onGround() == true) {
@@ -174,16 +175,25 @@ public class Hero extends Mover {
     
     public void respawn() {
         switch (Levens.levensHud) {
-                    case 3:
+                    case 6:
                         setLocation(100, 1100);
                         break;
+                    case 5:
+                        setLocation(100, 1100);
+                        break;
+                    case 4:
+                        setLocation(100, 1100);
+                        break;
+                    case 3:
+                        setLocation(100, 1100);
+                        break;    
                     case 2:
                         setLocation(100, 1100);
                         break;
                     case 1:
                         setLocation(100, 1100);
                         break;    
-                        default:
+                    case 0:
                         getWorld().removeObject(this);
                         break;
                     }
