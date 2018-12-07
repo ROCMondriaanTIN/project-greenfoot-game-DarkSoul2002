@@ -115,7 +115,7 @@ public class TileFactory {
                 tile = new Tile("fenceBroken.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
                 break;    
             case 29:
-                tile = new Tile("fence.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
+                tile = new Tile("cavebackground.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
                 break;    
             case 30:
                 tile = new Tile("mushroomBrown.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
@@ -156,6 +156,9 @@ public class TileFactory {
                 break;    
             case 43:
                 tile = new Tile("door_openTop.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
+                break;
+            case 44:
+                tile = new Tile("fence.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
                 break;    
             default:
                 tile = new Tile("grassMid.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
