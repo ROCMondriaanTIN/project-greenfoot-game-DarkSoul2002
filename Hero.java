@@ -11,7 +11,7 @@ public class Hero extends Mover {
     private TileEngine te;
     private Overlay overlay;
     public String personage = "1";
-    private int key = 0;
+    private boolean key;
     public Hero(TileEngine te, Overlay overlay) {
         super();
         this.te = te;
@@ -61,13 +61,12 @@ public class Hero extends Mover {
                         break;
                     case BLUE_KEY:
                         te.removeTile(tile);
-                        key = key + 3;
+                        key = true;
                         this.overlay.addKey();
                         break;
                     case BLUE_LOCK:
-                    if (key != 0) {
+                    if (key == true) {
                         te.removeTile(tile);
-                        key --;
                         break;
                     }
                         break;
@@ -80,6 +79,7 @@ public class Hero extends Mover {
                         this.overlay.addRemoveCoin();
                         return;
                     case DOOR:  
+                        key = false;
                         Greenfoot.setWorld(new DemoWorld());
                         return;    
                     case SILVER_COIN:
@@ -95,7 +95,11 @@ public class Hero extends Mover {
     
     public void personage() {
         if (LevelSelector.level1 == true) {
-        personage = JOptionPane.showInputDialog("kies een personage");
+            personage = JOptionPane.showInputDialog("kies een personage");
+        }
+        if (LevelSelector.level2 == true) {
+            personage = JOptionPane.showInputDialog("kies een personage");
+        }
         if (personage.equals("1"))
         {
             personage = "1";
@@ -109,7 +113,7 @@ public class Hero extends Mover {
             personage = "3";
         }
     }
-    }
+    
         
     
 
@@ -149,8 +153,11 @@ public class Hero extends Mover {
             sound();
         }
         
-        if(onGround() == false) {
-            setImage("p" + personage +"_jump.png");
+        if (velocityX > 0 && onGround() == false) {
+            setImage("p"+ personage +"_jump.png");
+        }
+        else if (velocityX < 0 && onGround() == false) {
+            setImage("p"+ personage +"_jump L.png");
         }
 
         if (Greenfoot.isKeyDown("s")) {

@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class LevelSelector extends Actor
 {
     public static boolean level1;
+    public static boolean level2;
     /**
      * Act - do whatever the LevelSelector wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -21,6 +22,7 @@ public class LevelSelector extends Actor
             Greenfoot.setWorld(new MyWorld());
         }
         else if(Greenfoot.isKeyDown("2")){
+            level2 = true;
             Greenfoot.setWorld(new DemoWorld()); 
         }
     }    
